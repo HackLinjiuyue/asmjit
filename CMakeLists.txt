@@ -304,6 +304,37 @@ endif()
 # AsmJit - Source
 # ===============
 
+set(ASMJIT_ARM_SRC
+asmjit/arm.h
+asmjit/arm/armformatter.cpp
+asmjit/arm/armformatter_p.h
+asmjit/arm/armglobals.h
+asmjit/arm/armoperand.h
+asmjit/arm/a64archtraits_p.h
+asmjit/arm/a64assembler.cpp
+asmjit/arm/a64assembler.h
+asmjit/arm/a64builder.cpp
+asmjit/arm/a64builder.h
+asmjit/arm/a64compiler.cpp
+asmjit/arm/a64compiler.h
+asmjit/arm/a64emithelper.cpp
+asmjit/arm/a64emithelper_p.h
+asmjit/arm/a64emitter.h
+asmjit/arm/a64formatter.cpp
+asmjit/arm/a64formatter_p.h
+asmjit/arm/a64func.cpp
+asmjit/arm/a64func_p.h
+asmjit/arm/a64globals.h
+asmjit/arm/a64instapi.cpp
+asmjit/arm/a64instapi_p.h
+asmjit/arm/a64instdb.cpp
+asmjit/arm/a64instdb.h
+asmjit/arm/a64operand.cpp
+asmjit/arm/a64operand.h
+asmjit/arm/a64rapass.cpp
+asmjit/arm/a64rapass_p.h
+asmjit/arm/a64utils.h)
+
 set(ASMJIT_SRC_LIST
   asmjit/asmjit.h
   asmjit/asmjit-scope-begin.h
@@ -395,36 +426,6 @@ set(ASMJIT_SRC_LIST
   asmjit/core/zonevector.cpp
   asmjit/core/zonevector.h
 
-  asmjit/arm.h
-  asmjit/arm/armformatter.cpp
-  asmjit/arm/armformatter_p.h
-  asmjit/arm/armglobals.h
-  asmjit/arm/armoperand.h
-  asmjit/arm/a64archtraits_p.h
-  asmjit/arm/a64assembler.cpp
-  asmjit/arm/a64assembler.h
-  asmjit/arm/a64builder.cpp
-  asmjit/arm/a64builder.h
-  asmjit/arm/a64compiler.cpp
-  asmjit/arm/a64compiler.h
-  asmjit/arm/a64emithelper.cpp
-  asmjit/arm/a64emithelper_p.h
-  asmjit/arm/a64emitter.h
-  asmjit/arm/a64formatter.cpp
-  asmjit/arm/a64formatter_p.h
-  asmjit/arm/a64func.cpp
-  asmjit/arm/a64func_p.h
-  asmjit/arm/a64globals.h
-  asmjit/arm/a64instapi.cpp
-  asmjit/arm/a64instapi_p.h
-  asmjit/arm/a64instdb.cpp
-  asmjit/arm/a64instdb.h
-  asmjit/arm/a64operand.cpp
-  asmjit/arm/a64operand.h
-  asmjit/arm/a64rapass.cpp
-  asmjit/arm/a64rapass_p.h
-  asmjit/arm/a64utils.h
-
   asmjit/x86.h
   asmjit/x86/x86archtraits_p.h
   asmjit/x86/x86assembler.cpp
@@ -451,6 +452,10 @@ set(ASMJIT_SRC_LIST
   asmjit/x86/x86rapass.cpp
   asmjit/x86/x86rapass_p.h
 )
+
+if(NOT ASMJIT_NO_AARCH32 AND NOT ASMJIT_NO_AARCH64)
+  list(APPEND ASMJIT_SRC_LIST ASMJIT_ARM_SRC)
+endif()
 
 if (MSVC AND NOT ASMJIT_NO_NATVIS)
   list(APPEND ASMJIT_SRC_LIST asmjit.natvis)
